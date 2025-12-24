@@ -1,0 +1,11 @@
+Date,System,Category,Severity,Root Cause,Action Items,Status,Post-Mortem Link
+2025-01-15,Fraud Detection,Model Drift,P1,Input data distribution shift from vendor format change,5,3/5 Complete,/AI-Incidents/2025/January/POST-MORTEM_FraudDetection_ModelDrift_20250115
+2025-01-08,Recommendations,Data Quality,P2,ETL pipeline null handling error,3,Complete,/AI-Incidents/2025/January/POST-MORTEM_Recommendations_DataQuality_20250108
+2024-12-19,Search Ranking,Model Drift,P2,Training data staleness (90 days old),4,Complete,/AI-Incidents/2024/December/POST-MORTEM_SearchRanking_ModelDrift_20241219
+2024-12-12,Credit Scoring,Bias Emergence,P1,Demographic shift in training data,6,4/6 Complete,/AI-Incidents/2024/December/POST-MORTEM_CreditScoring_BiasEmergence_20241212
+2024-11-28,Fraud Detection,Data Quality,P2,Missing feature values from upstream system,3,Complete,/AI-Incidents/2024/November/POST-MORTEM_FraudDetection_DataQuality_20241128
+2024-11-15,Recommendations,Model Drift,P3,Seasonal pattern not in training data,2,Complete,/AI-Incidents/2024/November/POST-MORTEM_Recommendations_ModelDrift_20241115
+2024-11-03,Search Ranking,Performance,P2,Inference latency spike from model size increase,4,Complete,/AI-Incidents/2024/November/POST-MORTEM_SearchRanking_Performance_20241103
+2024-10-22,Hiring AI,Bias Emergence,P1,Gender bias in resume screening,7,6/7 Complete,/AI-Incidents/2024/October/POST-MORTEM_HiringAI_BiasEmergence_20241022
+2024-10-10,Fraud Detection,Model Drift,P2,Currency conversion rate changes,3,Complete,/AI-Incidents/2024/October/POST-MORTEM_FraudDetection_ModelDrift_20241010
+2024-09-28,Recommendations,Data Quality,P3,Duplicate records in training batch,2,Complete,/AI-Incidents/2024/September/POST-MORTEM_Recommendations_DataQuality_20240928

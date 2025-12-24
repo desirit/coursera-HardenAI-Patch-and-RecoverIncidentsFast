@@ -1,0 +1,88 @@
+# Kubernetes Deployment for Model Server v2 (BUGGY)
+# This version will FAIL health checks and trigger restarts
+#
+# Deploy this to see Kubernetes self-healing in action:
+#   kubectl apply -f k8s/deployment-v2.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-server
+  labels:
+    app: model-server
+    version: v2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: model-server
+  template:
+    metadata:
+      labels:
+        app: model-server
+        version: v2
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: model-server
+        image: model-server:v2
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+          name: http
+
+        env:
+        - name: MODEL_VERSION
+          value: "v2.0"
+        - name: DEGRADED
+          value: "true"   # <-- This causes health check failures!
+
+        # Same probes as v1 - but v2 will FAIL them
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 2
+          successThreshold: 1
+
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+
+---
+# EXPECTED BEHAVIOR when you apply this:
+#
+# 1. Pods will start but DEGRADED=true causes:
+#    - /health returns 503 ~30% of the time
+#    - /ready returns 503 ~40% of the time
+#
+# 2. Kubernetes will:
+#    - Remove pods from Service (readiness failures)
+#    - Restart pods (liveness failures)
+#
+# 3. You'll see in 'kubectl get pods':
+#    - STATUS: Running but RESTARTS increasing
+#    - READY: 0/1 (not receiving traffic)
+#
+# 4. To recover, rollback to v1:
+#    kubectl rollout undo deployment/model-server

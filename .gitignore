@@ -1,0 +1,103 @@
+# Harden AI Labs - Git Ignore File
+
+# Python virtual environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+
+# MLflow artifacts (regenerable)
+mlruns/
+mlartifacts/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux files
+*~
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+
+# Unit test / coverage
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+
+# Logs
+*.log
+logs/
+
+# Local environment files
+.env
+.env.local
+*.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Kubernetes secrets (never commit!)
+*secret*.yaml
+*secrets*.yaml
+
+# Docker
+.docker/
+
+# Compiled files
+*.o
+*.a
+*.dylib
+
+# Zip archives (use git instead)
+*.zip
+*.tar.gz
+*.rar
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Student work files (keep separate)
+my_*.md
+my_*.py

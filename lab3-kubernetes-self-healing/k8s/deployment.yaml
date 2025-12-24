@@ -1,0 +1,104 @@
+# Kubernetes Deployment for Model Server v1 (Stable)
+# This deployment demonstrates liveness and readiness probes
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-server
+  labels:
+    app: model-server
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: model-server
+  template:
+    metadata:
+      labels:
+        app: model-server
+        version: v1
+      annotations:
+        # Enable Prometheus scraping
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: model-server
+        image: model-server:v1
+        imagePullPolicy: Never  # Use local image from minikube
+        ports:
+        - containerPort: 8080
+          name: http
+
+        env:
+        - name: MODEL_VERSION
+          value: "v1.0"
+        - name: DEGRADED
+          value: "false"
+
+        # ================================================================
+        # LIVENESS PROBE
+        # ================================================================
+        # Purpose: Detect if the container is alive
+        #
+        # Behavior:
+        #   - Starts checking after initialDelaySeconds
+        #   - Checks every periodSeconds
+        #   - If failureThreshold consecutive checks fail -> RESTART container
+        #
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10   # Wait 10s before first check
+          periodSeconds: 10         # Check every 10 seconds
+          timeoutSeconds: 5         # Timeout for each check
+          failureThreshold: 3       # Restart after 3 consecutive failures
+          successThreshold: 1       # 1 success to be considered healthy
+
+        # ================================================================
+        # READINESS PROBE
+        # ================================================================
+        # Purpose: Detect if the container is ready for traffic
+        #
+        # Behavior:
+        #   - Starts checking after initialDelaySeconds
+        #   - Checks every periodSeconds
+        #   - If failureThreshold checks fail -> REMOVE from load balancer
+        #   - Container is NOT restarted, just stops receiving traffic
+        #
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5    # Wait 5s before first check
+          periodSeconds: 5          # Check every 5 seconds
+          timeoutSeconds: 3         # Timeout for each check
+          failureThreshold: 2       # Remove from LB after 2 failures
+          successThreshold: 1       # 1 success to receive traffic again
+
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+
+---
+# What happens automatically:
+#
+# LIVENESS FAILURE (3 times):
+#    Pod STATUS changes -> Container restarts -> Restart count increases
+#    kubectl get pods shows: RESTARTS column incrementing
+#
+# READINESS FAILURE (2 times):
+#    Pod removed from Service endpoints -> No traffic routed
+#    kubectl get endpoints shows: IP removed from list
+#    Pod keeps running but receives no requests
+#
+# RECOVERY:
+#    When probes pass again -> Pod added back to endpoints
+#    Traffic resumes automatically

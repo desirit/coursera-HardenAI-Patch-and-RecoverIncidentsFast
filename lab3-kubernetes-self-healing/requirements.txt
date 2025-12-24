@@ -1,0 +1,4 @@
+# Lab 3: Kubernetes Self-Healing Systems
+# Python dependencies for model server container
+
+flask>=2.0.0

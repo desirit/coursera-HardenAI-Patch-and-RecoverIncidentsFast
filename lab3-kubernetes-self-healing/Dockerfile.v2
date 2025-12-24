@@ -1,0 +1,22 @@
+# Dockerfile for Model Server v2 (Buggy)
+# This version will FAIL health checks and trigger restarts
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application
+COPY model_server.py .
+
+# Environment variables for DEGRADED version
+# DEGRADED=true causes health checks to fail intermittently
+ENV MODEL_VERSION=v2.0
+ENV DEGRADED=true
+
+EXPOSE 8080
+
+CMD ["python", "model_server.py"]

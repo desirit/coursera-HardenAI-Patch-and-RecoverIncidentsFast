@@ -1,0 +1,33 @@
+# Kubernetes Service for Model Server
+# Exposes the deployment and load balances across healthy pods
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-server
+  labels:
+    app: model-server
+spec:
+  type: NodePort  # Accessible from outside the cluster
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30080
+    name: http
+  selector:
+    app: model-server
+
+---
+# How this works with readiness probes:
+#
+# The Service maintains a list of "endpoints" (pod IPs that are ready)
+#
+# When pod is READY:
+#   - Pod IP added to endpoints
+#   - Traffic routed to this pod
+#
+# When pod is NOT READY:
+#   - Pod IP removed from endpoints
+#   - NO traffic routed to this pod
+#
+# Check endpoints: kubectl get endpoints model-server
