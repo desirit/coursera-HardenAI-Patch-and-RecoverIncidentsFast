@@ -1,16 +1,24 @@
-# Harden AI: Patch and Recover Incidents Fast - Hands-On Labs
+# Harden AI: Patch and Recover Incidents Fast - Demo Code
 
-Welcome to the hands-on labs for the Coursera course **"Harden AI: Patch and Recover Incidents Fast"**. These labs provide practical experience with the key concepts covered in the course.
+Welcome to the demo code repository for the Coursera course **"Harden AI: Patch and Recover Incidents Fast"**. This repository contains the code used to demonstrate key concepts during the course videos.
 
 ## Overview
 
-This repository contains three self-contained lab modules, each focusing on a critical aspect of AI/ML incident response and recovery:
+This repository contains three demo modules, each demonstrating a critical aspect of AI/ML incident response and recovery:
 
-| Lab | Topic | Time Required | Difficulty |
-|-----|-------|---------------|------------|
-| [Lab 1](./lab1-canary-deployments/) | Canary Deployments for ML Models | 30-45 min | Beginner |
-| [Lab 2](./lab2-incident-knowledge-base/) | Building an Incident Knowledge Base | 20-30 min | Beginner |
-| [Lab 3](./lab3-kubernetes-self-healing/) | Kubernetes Self-Healing Systems | 45-60 min | Intermediate |
+| Module | Topic | Description |
+|--------|-------|-------------|
+| [Module 1](./module1-canary-deployments/) | Canary Deployments for ML Models | Traffic splitting and automatic rollback |
+| [Module 2](./module2-incident-knowledge-base/) | Incident Knowledge Base | Post-mortem templates and tracking |
+| [Module 3](./module3-kubernetes-self-healing/) | Kubernetes Self-Healing | Health probes and automatic recovery |
+
+## Purpose
+
+This code accompanies the video demonstrations in the course. You can use it to:
+
+- **Follow along** with the course videos
+- **Experiment** with the concepts on your own machine
+- **Extend** the examples for your own projects
 
 ## Prerequisites
 
@@ -19,18 +27,18 @@ This repository contains three self-contained lab modules, each focusing on a cr
 - Familiarity with command-line interfaces
 - Git installed on your machine
 
-### Lab-Specific Requirements
+### Module-Specific Requirements
 
-**Lab 1: Canary Deployments**
+**Module 1: Canary Deployments**
 - Python 3.10 or higher
 - pip (Python package manager)
 
-**Lab 2: Incident Knowledge Base**
-- Google account (for Google Docs/Sheets)
+**Module 2: Incident Knowledge Base**
+- Google account (for Google Docs/Sheets) or similar tools
 - GitHub account
 - Web browser
 
-**Lab 3: Kubernetes Self-Healing**
+**Module 3: Kubernetes Self-Healing**
 - Docker Desktop
 - Minikube
 - kubectl
@@ -43,47 +51,47 @@ This repository contains three self-contained lab modules, each focusing on a cr
 git clone https://github.com/desirit/coursera-HardenAI-Patch-and-RecoverIncidentsFast.git
 cd coursera-HardenAI-Patch-and-RecoverIncidentsFast
 
-# Navigate to a lab
-cd lab1-canary-deployments
+# Navigate to a module
+cd module1-canary-deployments
 
-# Follow the README in each lab folder
+# Follow the README in each module folder
 ```
 
-## Lab Summaries
+## Module Summaries
 
-### Lab 1: Canary Deployments for ML Models
+### Module 1: Canary Deployments for ML Models
 
-Learn how to safely deploy new ML model versions using canary releases:
+Demonstrates how to safely deploy new ML model versions using canary releases:
 - Set up MLflow for model versioning
 - Implement traffic splitting between production and canary models
 - Monitor real-time accuracy metrics
 - Trigger automatic rollback when performance degrades
 
-**Key Skills:** MLflow, Flask, A/B testing, gradual rollouts
+**Technologies:** MLflow, Flask, scikit-learn
 
-### Lab 2: Building an Incident Knowledge Base
+### Module 2: Building an Incident Knowledge Base
 
-Create a searchable repository of incident post-mortems:
+Demonstrates how to create a searchable repository of incident post-mortems:
 - Write structured post-mortem documents
 - Organize knowledge in Google Drive
 - Track patterns with Google Sheets
 - Manage action items with GitHub Issues
 
-**Key Skills:** Documentation, incident management, knowledge sharing
+**Technologies:** Google Workspace, GitHub Issues, Markdown
 
-### Lab 3: Kubernetes Self-Healing Systems
+### Module 3: Kubernetes Self-Healing Systems
 
-Build infrastructure that automatically recovers from failures:
+Demonstrates infrastructure that automatically recovers from failures:
 - Deploy applications to Kubernetes with health probes
 - Configure liveness and readiness checks
 - Set up Prometheus monitoring
 - Observe automatic pod restarts and rollbacks
 
-**Key Skills:** Kubernetes, Docker, Prometheus, infrastructure resilience
+**Technologies:** Kubernetes, Docker, Prometheus, Helm
 
 ## Learning Objectives
 
-After completing these labs, you will be able to:
+After exploring these demos, you will understand how to:
 
 1. **Implement safe deployment strategies** that minimize the blast radius of ML model failures
 2. **Build institutional memory** through structured incident documentation
@@ -93,38 +101,34 @@ After completing these labs, you will be able to:
 ## Folder Structure
 
 ```
-student-labs/
-├── README.md                           # This file
-├── lab1-canary-deployments/
-│   ├── README.md                       # Lab guide
-│   ├── EXERCISES.md                    # Hands-on exercises
-│   ├── app.py                          # Flask canary router
-│   ├── setup_models.py                 # MLflow model setup
-│   ├── send_requests.py                # Traffic generator
-│   ├── quick_setup.sh                  # Automated setup
+├── README.md                              # This file
+├── module1-canary-deployments/
+│   ├── README.md                          # Setup and usage guide
+│   ├── EXERCISES.md                       # Try-it-yourself exercises
+│   ├── app.py                             # Flask canary router
+│   ├── setup_models.py                    # MLflow model setup
+│   ├── send_requests.py                   # Traffic generator
 │   └── requirements.txt
 │
-├── lab2-incident-knowledge-base/
-│   ├── README.md                       # Lab guide
-│   ├── EXERCISES.md                    # Hands-on exercises
+├── module2-incident-knowledge-base/
+│   ├── README.md                          # Setup and usage guide
+│   ├── EXERCISES.md                       # Try-it-yourself exercises
 │   ├── templates/
-│   │   ├── postmortem_template.md      # Blank template
-│   │   ├── sample_postmortem.md        # Example (filled)
-│   │   └── github_issue_template.md    # Issue template
-│   ├── tracking_spreadsheet.csv        # Sample data
-│   └── github_setup/                   # GitHub repo templates
+│   │   ├── postmortem_template.md         # Blank template
+│   │   ├── sample_postmortem.md           # Example (filled)
+│   │   └── github_issue_template.md       # Issue template
+│   └── tracking_spreadsheet.csv           # Sample data
 │
-└── lab3-kubernetes-self-healing/
-    ├── README.md                       # Lab guide
-    ├── EXERCISES.md                    # Hands-on exercises
-    ├── model_server.py                 # Flask health probe demo
-    ├── Dockerfile                      # Stable version
-    ├── Dockerfile.v2                   # Degraded version
-    ├── deploy.sh                       # Deployment script
+└── module3-kubernetes-self-healing/
+    ├── README.md                          # Setup and usage guide
+    ├── EXERCISES.md                       # Try-it-yourself exercises
+    ├── model_server.py                    # Flask health probe demo
+    ├── Dockerfile                         # Stable version
+    ├── Dockerfile.v2                      # Degraded version
     ├── requirements.txt
     └── k8s/
-        ├── deployment.yaml             # Stable deployment
-        ├── deployment-v2.yaml          # Degraded deployment
+        ├── deployment.yaml                # Stable deployment
+        ├── deployment-v2.yaml             # Degraded deployment
         ├── service.yaml
         └── prometheus-values.yaml
 ```
@@ -133,7 +137,7 @@ student-labs/
 
 ### Common Issues
 
-**Lab 1: MLflow server won't start**
+**Module 1: MLflow server won't start**
 ```bash
 # Check if port 5001 is in use
 lsof -i :5001
@@ -141,7 +145,7 @@ lsof -i :5001
 kill -9 <PID>
 ```
 
-**Lab 3: Minikube won't start**
+**Module 3: Minikube won't start**
 ```bash
 # Reset minikube
 minikube delete
@@ -151,7 +155,7 @@ minikube start --driver=docker
 ### Getting Help
 
 - Review the course videos for conceptual understanding
-- Check the lab-specific README for detailed instructions
+- Check the module-specific README for detailed instructions
 - Open an issue in this repository for technical problems
 
 ## Contributing
@@ -177,4 +181,4 @@ This educational material is provided under the MIT License as part of the Cours
 
 **Happy Learning!**
 
-If you find these labs helpful, please star this repository and share with your colleagues.
+If you find this demo code helpful, please star this repository and share with your colleagues.

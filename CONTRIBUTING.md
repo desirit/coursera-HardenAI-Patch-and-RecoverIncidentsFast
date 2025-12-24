@@ -1,6 +1,6 @@
-# Contributing to Harden AI Labs
+# Contributing to Harden AI Demo Code
 
-Thank you for your interest in contributing to the Harden AI Labs!
+Thank you for your interest in contributing to the Harden AI Demo Code!
 
 ## How to Contribute
 
@@ -28,7 +28,7 @@ We welcome suggestions for:
 1. Fork the repository
 2. Create a feature branch: `git checkout -b fix/description`
 3. Make your changes
-4. Test that the labs still work
+4. Test that the demos still work
 5. Submit a pull request
 
 ### Code Style

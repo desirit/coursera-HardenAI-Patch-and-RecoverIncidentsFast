@@ -1,8 +1,8 @@
-# Lab 3: Kubernetes Self-Healing Systems
+# Module 3: Kubernetes Self-Healing Systems
 
 ## Overview
 
-In this lab, you'll build infrastructure that **automatically recovers from failures**. Using Kubernetes health probes, your system will detect problems and take corrective action without human intervention.
+This module demonstrates infrastructure that **automatically recovers from failures**. Using Kubernetes health probes, your system will detect problems and take corrective action without human intervention.
 
 ### What You'll Learn
 
@@ -25,7 +25,7 @@ Self-healing infrastructure minimizes downtime by detecting these problems and a
 
 ### Required Tools
 
-Install these before starting the lab:
+Install these before running the demo:
 
 **macOS:**
 ```bash
@@ -181,7 +181,9 @@ readinessProbe:
 
 **When to use:** Warm-up periods, temporary overload, dependency failures.
 
-## Lab Exercises
+## Try It Yourself
+
+See `EXERCISES.md` for detailed exercises including:
 
 ### Exercise 1: Observe Healthy System (10 min)
 
@@ -202,14 +204,6 @@ readinessProbe:
    ```
    All pod IPs should be listed.
 
-4. Test the health endpoints:
-   ```bash
-   URL=$(minikube service model-server --url)
-   curl $URL/health
-   curl $URL/ready
-   curl $URL/metrics
-   ```
-
 ### Exercise 2: Deploy Buggy Version (15 min)
 
 1. Deploy the buggy version:
@@ -225,16 +219,6 @@ readinessProbe:
 3. Observe:
    - `RESTARTS` column increasing (liveness failures)
    - `READY` showing `0/1` (readiness failures)
-
-4. Check events:
-   ```bash
-   kubectl get events --sort-by='.lastTimestamp'
-   ```
-
-5. Check endpoints (pods removed from load balancer):
-   ```bash
-   kubectl get endpoints model-server
-   ```
 
 ### Exercise 3: Perform Rollback (10 min)
 
@@ -253,11 +237,6 @@ readinessProbe:
    kubectl get pods -w
    ```
 
-4. Verify health is restored:
-   ```bash
-   curl $(minikube service model-server --url)/health
-   ```
-
 ### Exercise 4: Set Up Prometheus Monitoring (20 min)
 
 1. Install Prometheus:
@@ -270,22 +249,15 @@ readinessProbe:
      --namespace monitoring --create-namespace
    ```
 
-2. Wait for Prometheus to start:
-   ```bash
-   kubectl get pods -n monitoring -w
-   ```
-
-3. Access Prometheus UI:
+2. Access Prometheus UI:
    ```bash
    minikube service prometheus-server -n monitoring
    ```
 
-4. In the Prometheus UI, try these queries:
+3. Try these queries:
    - `model_accuracy` - Current model accuracy
    - `model_degraded` - Is model degraded? (0 or 1)
    - `model_latency_ms` - Average latency
-
-5. Check the "Alerts" tab for predefined alerts.
 
 ## Key Concepts
 
@@ -393,7 +365,7 @@ minikube delete
 - [Designing Health Check Endpoints](https://blog.colinbreck.com/kubernetes-liveness-and-readiness-probes-how-to-avoid-shooting-yourself-in-the-foot/)
 - [Prometheus Monitoring](https://prometheus.io/docs/introduction/overview/)
 
-## Previous Labs
+## Other Modules
 
-- **Lab 1**: Canary Deployments for ML Models
-- **Lab 2**: Building an Incident Knowledge Base
+- **Module 1**: Canary Deployments for ML Models
+- **Module 2**: Building an Incident Knowledge Base

@@ -1,4 +1,4 @@
-# Lab 1: Exercises
+# Module 1: Exercises
 
 Complete these hands-on exercises to reinforce your understanding of canary deployments.
 

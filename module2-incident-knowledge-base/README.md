@@ -1,8 +1,8 @@
-# Lab 2: Building an Incident Knowledge Base
+# Module 2: Building an Incident Knowledge Base
 
 ## Overview
 
-In this lab, you'll learn how to build a searchable repository of incident post-mortems that serves as **institutional memory** for your team. When incidents happen (and they will), having documented lessons learned helps you:
+This module demonstrates how to build a searchable repository of incident post-mortems that serves as **institutional memory** for your team. When incidents happen (and they will), having documented lessons learned helps you:
 
 1. Avoid repeating the same mistakes
 2. Onboard new team members quickly
@@ -28,16 +28,14 @@ A structured post-mortem knowledge base prevents this knowledge loss and turns e
 - GitHub account (for issue tracking)
 - Web browser
 
-## Lab Structure
+## What's Included
 
-This lab is primarily documentation-based. You'll be creating:
+This module contains documentation templates and examples:
 
 1. A post-mortem template
 2. A sample filled-out post-mortem
 3. A tracking spreadsheet
-4. GitHub Issues for action item tracking
-
-**Estimated Time:** 20-30 minutes
+4. GitHub Issues templates for action item tracking
 
 ## Part 1: Understanding Post-Mortems
 
@@ -56,9 +54,9 @@ A post-mortem (also called "incident review" or "retrospective") is a documented
 3. **Actionable** - Every post-mortem should produce concrete improvements
 4. **Accessible** - Anyone in the org should be able to find and learn from it
 
-## Part 2: Create Your Post-Mortem Template
+## Part 2: The Post-Mortem Template
 
-### Step 1: Review the Template
+### Review the Template
 
 Open `templates/postmortem_template.md` in this folder. This template includes:
 
@@ -73,7 +71,7 @@ Open `templates/postmortem_template.md` in this folder. This template includes:
 | Action Items | Tracked improvements |
 | Lessons Learned | Knowledge to share |
 
-### Step 2: Create Your Own Template
+### Using the Template
 
 You can use this template in:
 
@@ -82,42 +80,33 @@ You can use this template in:
 - **Confluence** - Create a page template
 - **Local Markdown** - Keep in your team's repository
 
-## Part 3: Write a Sample Post-Mortem
+## Part 3: Sample Post-Mortem
 
-### Exercise: Document a Hypothetical Incident
+Check out `templates/sample_postmortem.md` for a complete example based on this scenario:
 
-Use the scenario below to practice writing a post-mortem.
-
-**Scenario: Image Classification API Failure**
+**Scenario: Fraud Detection Model Drift**
 
 ```
-Date: January 20, 2025
-System: Product Image Classifier
-Duration: 3 hours (10:00 - 13:00 UTC)
+Date: January 15, 2025
+System: Fraud Detection Model
+Duration: 5.4 hours
 
 What happened:
-- The image classification API started returning "Unknown" for all images
-- 15,000 products were incorrectly categorized during the outage
-- Customer-facing catalog showed wrong categories
+- Model accuracy degraded from 98% to 66%
+- 23,000 transactions were misclassified
+- $47,000 in false fraud blocks
 
 Root cause:
-- A new version of the model was deployed that expected PNG images
-- The production pipeline was sending JPEG images
-- The model failed silently, defaulting to "Unknown" category
+- Payment processor changed transaction ID format
+- Model's feature extraction treated new format as anomalies
+- No automated drift detection was in place
 
 How it was resolved:
-- Rolled back to the previous model version
-- Added input format validation to the API
+- Rolled back to previous model version via MLflow
+- Added input schema validation
 ```
 
-### Your Task
-
-1. Open `templates/sample_postmortem.md` for reference
-2. Create a new file `my_postmortem.md`
-3. Fill in all sections based on the scenario above
-4. Add realistic action items
-
-## Part 4: Create a Tracking System
+## Part 4: Tracking System
 
 ### Option A: Google Sheets Tracker
 
@@ -195,39 +184,13 @@ Always include searchable tags in your post-mortems:
 - **Severity:** `p0-critical`, `p1-high`, `p2-medium`, `p3-low`
 - **Team:** `ml-platform`, `data-engineering`, `product`
 
-## Lab Exercises
+## Try It Yourself
 
-### Exercise 1: Write Your Own Post-Mortem (15 min)
+See `EXERCISES.md` for hands-on exercises including:
 
-Using the scenario from Part 3:
-1. Create a new post-mortem document
-2. Fill in all sections
-3. Create 3-5 realistic action items
-4. Add appropriate tags
-
-### Exercise 2: Set Up Tracking (10 min)
-
-1. Create a GitHub repository called `incident-response`
-2. Add the labels listed in Part 4
-3. Create 2-3 issues from your post-mortem action items
-4. Assign a milestone
-
-### Exercise 3: Pattern Recognition (5 min)
-
-Review the sample data in `tracking_spreadsheet.csv`:
-1. Which category has the most incidents?
-2. What's the average time to resolution?
-3. Are there any patterns in when incidents occur?
-
-## Self-Assessment Checklist
-
-After completing this lab, you should be able to:
-
-- [ ] Explain the purpose of a blameless post-mortem
-- [ ] Create a post-mortem from an incident description
-- [ ] Set up a searchable folder structure for documentation
-- [ ] Track action items in GitHub Issues with proper labeling
-- [ ] Identify patterns across multiple incidents
+1. Writing your own post-mortem from a scenario
+2. Setting up GitHub Issues with proper labels
+3. Analyzing patterns in incident data
 
 ## Key Takeaways
 
@@ -245,5 +208,5 @@ After completing this lab, you should be able to:
 
 ## Next Steps
 
-After completing this lab, proceed to:
-- **Lab 3**: Kubernetes Self-Healing Systems
+After exploring this demo, check out:
+- **Module 3**: Kubernetes Self-Healing Systems

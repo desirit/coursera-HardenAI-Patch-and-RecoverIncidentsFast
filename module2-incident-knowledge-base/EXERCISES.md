@@ -1,4 +1,4 @@
-# Lab 2: Exercises
+# Module 2: Exercises
 
 Complete these hands-on exercises to build your incident knowledge base skills.
 

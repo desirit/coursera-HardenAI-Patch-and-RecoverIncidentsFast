@@ -1,8 +1,8 @@
-# Lab 1: Canary Deployments for ML Models
+# Module 1: Canary Deployments for ML Models
 
 ## Overview
 
-In this lab, you'll implement a **canary deployment** strategy for machine learning models. Canary deployments allow you to safely roll out new model versions by gradually shifting traffic from your stable production model to the new version while monitoring performance metrics.
+This module demonstrates a **canary deployment** strategy for machine learning models. Canary deployments allow you to safely roll out new model versions by gradually shifting traffic from your stable production model to the new version while monitoring performance metrics.
 
 ### What You'll Learn
 
@@ -34,9 +34,9 @@ Canary deployments minimize these risks by exposing only a small percentage of t
                     │              Flask Canary Router                │
                     │                                                 │
    Requests ───────►│   if random() < CANARY_PERCENTAGE:              │
-                    │       route_to(canary_model)     ────► 🟡 Canary│
+                    │       route_to(canary_model)     ────► Canary   │
                     │   else:                                         │
-                    │       route_to(production_model) ────► 🔵 Prod  │
+                    │       route_to(production_model) ────► Prod     │
                     │                                                 │
                     │   Track: accuracy, latency per model            │
                     └─────────────────────────────────────────────────┘
@@ -56,8 +56,8 @@ Canary deployments minimize these risks by exposing only a small percentage of t
 ### Step 1: Set Up Your Environment
 
 ```bash
-# Navigate to this lab directory
-cd lab1-canary-deployments
+# Navigate to this module directory
+cd module1-canary-deployments
 
 # Create a virtual environment
 python3 -m venv venv
@@ -72,7 +72,7 @@ pip install -r requirements.txt
 Open a **new terminal** and run:
 
 ```bash
-cd lab1-canary-deployments
+cd module1-canary-deployments
 source venv/bin/activate
 mlflow server --host 127.0.0.1 --port 5001
 ```
@@ -104,7 +104,7 @@ The server starts on http://127.0.0.1:8080
 Open a **third terminal**:
 
 ```bash
-cd lab1-canary-deployments
+cd module1-canary-deployments
 source venv/bin/activate
 
 # Send 20 test requests
@@ -151,7 +151,7 @@ else:
 | `/simulate_failure/1` | POST | Enable failure simulation |
 | `/reset` | POST | Reset all metrics |
 
-## Lab Exercises
+## Try It Yourself
 
 Complete these exercises to deepen your understanding. See `EXERCISES.md` for detailed instructions.
 
@@ -237,6 +237,6 @@ python setup_models.py
 
 ## Next Steps
 
-After completing this lab, proceed to:
-- **Lab 2**: Building an Incident Knowledge Base
-- **Lab 3**: Kubernetes Self-Healing Systems
+After exploring this demo, check out:
+- **Module 2**: Building an Incident Knowledge Base
+- **Module 3**: Kubernetes Self-Healing Systems

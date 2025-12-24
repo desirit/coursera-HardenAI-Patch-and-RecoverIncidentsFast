@@ -1,4 +1,4 @@
-# Lab 3: Exercises
+# Module 3: Exercises
 
 Complete these hands-on exercises to master Kubernetes self-healing systems.
 
@@ -443,6 +443,6 @@ After completing all exercises, you should be able to:
 
 1. What was the most surprising thing you learned?
 
-2. How would you improve the health check design in this lab?
+2. How would you improve the health check design in this module?
 
 3. What other automated recovery mechanisms could complement health probes?
